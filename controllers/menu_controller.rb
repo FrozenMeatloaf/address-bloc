@@ -75,7 +75,9 @@ class MenuController
   def search_entries
     print "Search by name: "
     name = gets.chomp
-    match = Entry.find_by(:name, name)
+    # see method_missing
+    match = Entry.find_by_mkasd(name)
+    # match = Entry.find_by(:name, name)
     system "clear"
     if match
       puts match.to_s
