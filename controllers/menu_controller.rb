@@ -59,7 +59,7 @@ class MenuController
     index = gets.chomp.to_i
 
     @address_book = AddressBook.find(index + 1)
-    sytem "clear"
+    system "clear"
     return if @address_book
     puts "Please select a valid index"
     select_address_book_menu
@@ -72,7 +72,7 @@ class MenuController
       entry_submenu(entry)
     end
 
-    system "clear"
+    # system "clear"
     puts "End of entries"
   end
 
@@ -96,7 +96,7 @@ class MenuController
     print "Search by name: "
     name = gets.chomp
     # see method_missing
-    match = @address_book.find_entry(:name, name)
+    match = @address_book.find_entry(name: name)
     system "clear"
     if match
       puts match.to_s
@@ -152,7 +152,8 @@ class MenuController
   end
 
   def delete_entry(entry)
-    address_book.entries.delete(entry)
+    # address_book.entries.delete(entry)
+    Entry.destroy(entry.id)
     puts "#{entry.name} has been deleted"
   end
 
